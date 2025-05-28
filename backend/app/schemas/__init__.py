@@ -14,6 +14,12 @@ from app.schemas.quiz import (
     QuizResponse,
     QuizUpdate,
 )
+from app.schemas.question import (
+    QuestionBase,
+    QuestionCreate,
+    QuestionResponse,
+    QuestionUpdate,
+)
 
 __all__ = [
     "UserBase",
@@ -28,4 +34,8 @@ __all__ = [
     "QuizListResponse",
     "QuizResponse",
     "QuizUpdate",
+    "QuestionBase",
+    "QuestionCreate",
+    "QuestionResponse",
+    "QuestionUpdate",
 ]
