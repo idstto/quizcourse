@@ -38,3 +38,36 @@ class QuizAttempt(Base):
         lazy="selectin",
         cascade="all, delete-orphan",
     )
+
+
+class AttemptAnswer(Base):
+    __tablename__ = "attempt_answers"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
+    )
+    attempt_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("quiz_attempts.id", ondelete="CASCADE"),
+        nullable=False,
+    )
+    question_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("questions.id"), nullable=False
+    )
+    selected_answer_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("answers.id"), nullable=False
+    )
+    is_correct: Mapped[bool] = mapped_column(Boolean, default=False)
+    answered_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
+    )
+
+    attempt: Mapped["QuizAttempt"] = relationship(
+        "QuizAttempt", back_populates="answers"
+    )
+    question: Mapped["Question"] = relationship(
+        "Question", back_populates="attempt_answers"
+    )
+    selected_answer: Mapped["Answer"] = relationship(
+        "Answer", back_populates="attempt_answers"
+    )

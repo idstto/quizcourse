@@ -28,6 +28,8 @@ from app.schemas.answer import (
     AnswerUpdate,
 )
 from app.schemas.attempt import (
+    AttemptAnswerDetail,
+    AttemptAnswerResponse,
     AttemptAnswerSubmit,
     QuizAttemptCreate,
     QuizAttemptResponse,
@@ -57,6 +59,8 @@ __all__ = [
     "AnswerPublicResponse",
     "AnswerResponse",
     "AnswerUpdate",
+    "AttemptAnswerDetail",
+    "AttemptAnswerResponse",
     "AttemptAnswerSubmit",
     "QuizAttemptCreate",
     "QuizAttemptResponse",
