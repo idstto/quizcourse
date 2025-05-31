@@ -40,6 +40,29 @@ class AttemptAnswerSubmit(BaseModel):
     answer_id: UUID = Field(..., description="ID of the selected answer")
 
 
+class AttemptAnswerResponse(BaseModel):
+    id: UUID
+    attempt_id: UUID
+    question_id: UUID
+    selected_answer_id: UUID
+    is_correct: bool
+    answered_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class AttemptAnswerDetail(BaseModel):
+    """Detailed response for results page showing question and answer text"""
+
+    question_id: UUID
+    question_text: str
+    selected_answer_id: UUID
+    selected_answer_text: str
+    correct_answer_id: UUID
+    correct_answer_text: str
+    is_correct: bool
+
+
 class QuizSubmit(BaseModel):
     answers: list[AttemptAnswerSubmit] = Field(
         ..., description="List of answers for each question"
