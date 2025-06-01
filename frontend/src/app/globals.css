@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* Material Design Yellow Palette */
+  --color-yellow-50: #FFFDE7;
+  --color-yellow-100: #FFF9C4;
+  --color-yellow-200: #FFF59D;
+  --color-yellow-300: #FFF176;
+  --color-yellow-400: #FFEE58;
+  --color-yellow-500: #FFEB3B;
+  --color-yellow-600: #FDD835;
+  --color-yellow-700: #FBC02D;
+  --color-yellow-800: #F9A825;
+  --color-yellow-900: #F57F17;
+  --color-yellow-a100: #FFFF8D;
+  --color-yellow-a200: #FFFF00;
+  --color-yellow-a400: #FFEA00;
+  --color-yellow-a700: #FFD600;
+
+  /* Grey Palette */
+  --color-grey-50: #FAFAFA;
+  --color-grey-100: #F5F5F5;
+  --color-grey-200: #EEEEEE;
+  --color-grey-300: #E0E0E0;
+  --color-grey-400: #BDBDBD;
+  --color-grey-500: #9E9E9E;
+  --color-grey-600: #757575;
+  --color-grey-700: #616161;
+  --color-grey-800: #424242;
+  --color-grey-900: #212121;
+
+  /* Light Theme Colors */
+  --color-primary: #FFEB3B;
+  --color-primary-dark: #FBC02D;
+  --color-primary-light: #FFF59D;
+  --color-accent: #FFFF00;
+  --color-background: #FFFDE7;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #212121;
+  --color-text-secondary: #757575;
+  --color-border: #E0E0E0;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+  --color-warning: #FF9800;
+}
+
+:root {
+  --background: var(--color-background);
+  --surface: var(--color-surface);
+  --primary: var(--color-primary);
+  --primary-dark: var(--color-primary-dark);
+  --primary-light: var(--color-primary-light);
+  --accent: var(--color-accent);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --border: var(--color-border);
+}
+
+.dark {
+  --background: #121212;
+  --surface: #1E1E1E;
+  --primary: #FFEE58;
+  --primary-dark: #FDD835;
+  --primary-light: #FFF176;
+  --accent: #FFFF8D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #BDBDBD;
+  --border: #424242;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
