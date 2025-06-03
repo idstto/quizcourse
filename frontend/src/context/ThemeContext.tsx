@@ -15,10 +15,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const THEME_KEY = 'quizcourse_theme';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [mounted, setMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>('system');
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
+    setMounted(true);
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
     if (stored) {
       setThemeState(stored);

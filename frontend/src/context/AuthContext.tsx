@@ -21,22 +21,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
-      api.auth
-        .me(token)
-        .then((userData) => {
+    const initAuth = async () => {
+      try {
+        const token = getToken();
+        if (token) {
+          const userData = await api.auth.me(token);
           setUser(userData as User);
-        })
-        .catch(() => {
-          removeToken();
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    } else {
-      setIsLoading(false);
-    }
+        }
+      } catch {
+        removeToken();
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initAuth();
   }, []);
 
   const login = async (email: string, password: string) => {
