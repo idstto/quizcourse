@@ -1,7 +1,6 @@
 'use client';
 
 import { useTimer } from '@/hooks/useTimer';
-import { useEffect } from 'react';
 
 interface TimerProps {
   initialSeconds: number;
@@ -18,17 +17,13 @@ export function Timer({
   showWarning = true,
   warningThreshold = 60,
 }: TimerProps) {
-  const { seconds, isRunning, isComplete, start, pause, reset, formatTime } = useTimer({
+  const { seconds, isRunning, start, formattedTime } = useTimer({
     initialSeconds,
-    onComplete,
+    onTimeUp: onComplete,
+    autoStart,
   });
 
-  useEffect(() => {
-    if (autoStart) {
-      start();
-    }
-  }, [autoStart, start]);
-
+  const isComplete = seconds === 0;
   const isWarning = showWarning && seconds <= warningThreshold && seconds > 0;
   const isCritical = showWarning && seconds <= 10 && seconds > 0;
 
@@ -79,7 +74,7 @@ export function Timer({
           d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
         />
       </svg>
-      <span>{formatTime()}</span>
+      <span>{formattedTime}</span>
     </div>
   );
 }
