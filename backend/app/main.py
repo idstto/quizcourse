@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
 from app.config import settings
+from app.routers import auth, quizzes, attempts
 
 app = FastAPI(
     title="QuizCourse API",
@@ -28,6 +30,8 @@ def custom_openapi():
         description="API for creating and taking quizzes with timed sessions",
         routes=app.routes,
     )
+    if "components" not in openapi_schema:
+        openapi_schema["components"] = {}
     openapi_schema["components"]["securitySchemes"] = {
         "BearerAuth": {
             "type": "http",
@@ -41,6 +45,20 @@ def custom_openapi():
 
 
 app.openapi = custom_openapi
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include routers
+app.include_router(auth.router)
+app.include_router(quizzes.router)
+app.include_router(attempts.router)
 
 
 @app.get("/health", tags=["health"])
