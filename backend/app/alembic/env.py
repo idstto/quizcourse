@@ -5,6 +5,7 @@ from sqlalchemy import engine_from_config, pool
 
 from app.config import settings
 from app.database import Base
+from app.models import User, Quiz, Question, Answer, QuizAttempt, AttemptAnswer
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
