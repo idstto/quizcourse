@@ -11,7 +11,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str = Field(
-        ..., min_length=8, max_length=100, description="User password"
+        ..., min_length=8, max_length=72, description="User password"
     )
 
     model_config = {
@@ -44,7 +44,7 @@ class UserResponse(UserBase):
 
 class UserUpdate(BaseModel):
     full_name: str | None = Field(None, min_length=1, max_length=255)
-    password: str | None = Field(None, min_length=8, max_length=100)
+    password: str | None = Field(None, min_length=8, max_length=72)
 
 
 class Token(BaseModel):
